@@ -21,7 +21,7 @@ namespace TPC_Articulos.Datos
 
         public AccesoDatos()
         {
-            conexion = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["cadenaConexion"].ConnectionString);
+            conexion = new SqlConnection("server=.\\SQLEXPRESS; database=TPC_ARTICULOS_DB; integrated security=true");
             comando = new SqlCommand();
             comando.Connection = conexion;
         }
@@ -32,7 +32,7 @@ namespace TPC_Articulos.Datos
             comando.CommandText = consulta;
         }
 
-        public void SetSP(string nombreSP)
+        public void SetearSP(string nombreSP)
         {
             comando.Parameters.Clear();
             comando.CommandType = CommandType.StoredProcedure;
