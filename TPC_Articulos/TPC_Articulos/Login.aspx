@@ -20,7 +20,8 @@
                             <asp:TextBox ID="txtPassword" TextMode="Password" CssClass="form-control" runat="server" />
                         </div>
 
-                        <asp:Button ID="btnLogin" runat="server" CssClass="btn btn-primary w-100" Text="Ingresar" />
+                        <asp:Button ID="btnLogin" runat="server" CssClass="btn btn-primary w-100" Text="Ingresar" OnClick="btnLogin_Click" />
+                        <asp:Label ID="lblError" runat="server" foreColor="Red" CssClass="mt-2 d-block" />
 
                         <div class="mt-3 text-center">
                             <a href="RegistroUsuario.aspx">¿No tenés cuenta? Registrate</a>

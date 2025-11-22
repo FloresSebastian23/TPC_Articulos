@@ -1,6 +1,4 @@
-﻿<%@ Page Title="✏ Modificar Artículo" Language="C#" MasterPageFile="~/Site1.Master"
-    AutoEventWireup="true" CodeBehind="ModificarArticulo.aspx.cs"
-    Inherits="TPC_Articulos.ModificarArticulo" %>
+﻿<%@ Page Title="✏ Modificar Artículo" Language="C#" MasterPageFile="~/Site1.Master"AutoEventWireup="true" CodeBehind="ModificarArticulo.aspx.cs"Inherits="TPC_Articulos.ModificarArticulo" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 

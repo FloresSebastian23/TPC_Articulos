@@ -54,7 +54,7 @@ namespace TPC_Articulos.Negocio
             try
             {
                 datos.SetearSP("sp_Login");
-                datos.AgregarParametro("@UserName", user);
+                datos.AgregarParametro("@UsNombre", user);
                 datos.AgregarParametro("@Pass", pass);
 
                 datos.EjecutarLectura();
@@ -64,7 +64,7 @@ namespace TPC_Articulos.Negocio
                     Usuario aux = new Usuario
                     {
                         Id = (int)datos.Lector["Id"],
-                        User = (string)datos.Lector["UserName"],
+                        User = (string)datos.Lector["NombreUsuario"],
                         EsAdmin = (bool)datos.Lector["EsAdmin"]
                     };
 

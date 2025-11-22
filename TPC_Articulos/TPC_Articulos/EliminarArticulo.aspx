@@ -1,6 +1,4 @@
-﻿<%@ Page Title="🗑 Eliminar Artículo" Language="C#" MasterPageFile="~/Site1.Master"
-    AutoEventWireup="true" CodeBehind="EliminarArticulo.aspx.cs"
-    Inherits="TPC_Articulos.EliminarArticulo" %>
+﻿<%@ Page Title="🗑 Eliminar Artículo" Language="C#" MasterPageFile="~/Site1.Master" AutoEventWireup="true" CodeBehind="EliminarArticulo.aspx.cs"Inherits="TPC_Articulos.EliminarArticulo" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 

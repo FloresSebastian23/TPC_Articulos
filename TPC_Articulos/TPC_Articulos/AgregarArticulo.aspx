@@ -1,6 +1,4 @@
-﻿<%@ Page Title="➕ Agregar Artículo" Language="C#" MasterPageFile="~/Site1.Master"
-    AutoEventWireup="true" CodeBehind="AgregarArticulo.aspx.cs"
-    Inherits="TPC_Articulos.AgregarArticulo" %>
+﻿<%@ Page Title="➕ Agregar Artículo" Language="C#" MasterPageFile="~/Site1.Master"AutoEventWireup="true" CodeBehind="AgregarArticulo.aspx.cs"Inherits="TPC_Articulos.AgregarArticulo" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
