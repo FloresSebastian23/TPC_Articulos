@@ -36,16 +36,25 @@ namespace TPC_Articulos
 				}
 				Usuario logueado = negocio.Login(user, pass);
 				if (logueado != null)
-				{
-					Session["Usuario"] = logueado;
+				{ 
+                    Session["Usuario"] = logueado;
 
-					if (logueado.EsAdmin)
-						Response.Redirect("Administracion.aspx", false);
-					else
-						Response.Redirect("Catalogo.aspx", false);
+                    // SI HAY returnUrl, volver ahí
+                    string returnUrl = Request.QueryString["returnUrl"];
+                    if (!string.IsNullOrEmpty(returnUrl))
+                    {
+                        Response.Redirect(returnUrl, false);
+                        return;
+                    }
 
-					return;
-				}
+                    // Si no había returnUrl, flujo normal
+                    if (logueado.EsAdmin)
+                        Response.Redirect("Administracion.aspx", false);
+                    else
+                        Response.Redirect("Catalogo.aspx", false);
+
+                    return;
+                }
 				else
 				{
 					lblError.Text = "Usuario o contraseña incorrectos";
