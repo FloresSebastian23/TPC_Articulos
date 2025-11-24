@@ -1,5 +1,4 @@
 
-
 CREATE DATABASE TPC_ARTICULOS_DB;
 GO
 USE TPC_ARTICULOS_DB;
@@ -152,3 +151,63 @@ WHERE Codigo = 'A002';
 UPDATE Articulos 
 SET ImagenUrl = 'https://storelaplata.com.ar/img/Public/1098-producto-312018a9f87ad715223aa7930de1-7448.jpg'
 WHERE Codigo = 'A003';
+
+
+
+
+create table Usuarios (
+ Id int identity(1,1) primary key,
+ NombreUsuario varchar(100) not null unique,
+ Pass varchar(50) not null,
+ EsAdmin bit not null default 0,
+ Estado bit not null default 1,
+);
+
+insert into Usuarios (NombreUsuario, Pass, EsAdmin)
+values ('admin@admin.com', 'admin123', 1),
+       ('usuario@correo.com', 'usuario123', 0);
+
+
+create table Proveedores(
+  Id int identity(1,1) primary key,
+  Nombre varchar(50) not null);
+
+--------------------------
+-- STORED PROCEDURES
+--------------------------
+
+	   create procedure sp_ExisteUsuario
+	      @UsNombre varchar(100)
+	as
+	begin
+	   select count(*) as Existe
+	   from Usuarios
+	   where NombreUsuario = @UsNombre and Estado = 1
+	end
+-----------------------------------------------
+
+	create procedure sp_AgregarUsuario
+	(   @UsNombre varchar(100),
+        @Clave varchar(100),
+		@EsAdmin bit
+     )
+	 as
+	 begin
+	   insert into Usuarios (NombreUsuario,Pass,EsAdmin)
+	   values (@UsNombre, @Clave, @EsAdmin);
+	end
+------------------------------------------------------
+   
+   create procedure sp_login
+   (   
+         @UsNombre varchar(100),
+		 @Pass varchar(100)
+   )
+   as
+   begin
+      select Id, NombreUsuario, EsAdmin
+	  from Usuarios
+	  where NombreUsuario = @UsNombre
+	  and Pass = @Pass
+	  and Estado = 1;
+    end

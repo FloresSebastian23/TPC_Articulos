@@ -88,7 +88,7 @@ namespace TPC_Articulos.Negocio
 
             try
             {
-                datos.SetConsulta("SELECT Id, Nombre FROM PROVEDORES WHERE Id = @Id");
+                datos.SetConsulta("SELECT Id, Nombre FROM Proveedores WHERE Id = @Id");
                 datos.AgregarParametro("@Id", id);
                 datos.EjecutarLectura();
 

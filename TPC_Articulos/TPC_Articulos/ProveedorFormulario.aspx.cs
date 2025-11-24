@@ -32,9 +32,11 @@ namespace TPC_Articulos
         {
             ProveedorNegocio negocio = new ProveedorNegocio();
             Proveedor prov = negocio.obtenerPorId(id);
-
-            hfId.Value = prov.Id.ToString();
-            txtNombre.Text = prov.Nombre;
+            if (prov != null)
+            {
+                hfId.Value = prov.Id.ToString();
+                txtNombre.Text = prov.Nombre;
+            }
         }
 
         protected void btnGuardar_Click(object sender, EventArgs e)
@@ -56,7 +58,7 @@ namespace TPC_Articulos
                 negocio.Agregar(prov);
             }
 
-            Response.Redirect("Provedor.aspx");
+            Response.Redirect("Proveedores.aspx");
         }
     }
 }

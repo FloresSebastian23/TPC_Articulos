@@ -30,7 +30,7 @@ namespace TPC_Articulos
         {
             Response.Redirect("ProveedorFormulario.aspx");
         }
-
+         
         protected void dgvProveedores_SelectedIndexChanged(object sender, EventArgs e)
         {
             string id = dgvProveedores.SelectedRow.Cells[0].Text;
