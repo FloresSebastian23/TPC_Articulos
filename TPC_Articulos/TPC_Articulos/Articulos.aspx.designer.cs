@@ -11,25 +11,25 @@ namespace TPC_Articulos
 {
 
 
-    public partial class EliminarArticulo
+    public partial class Articulos
     {
 
         /// <summary>
-        /// Control lblId.
+        /// Control dgvArticulos.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblId;
+        protected global::System.Web.UI.WebControls.GridView dgvArticulos;
 
         /// <summary>
-        /// Control btnEliminar.
+        /// Control btnAgregar.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnEliminar;
+        protected global::System.Web.UI.WebControls.Button btnAgregar;
     }
 }
