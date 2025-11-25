@@ -19,7 +19,8 @@ namespace TPC_Articulos
             bool esPublica =
                 pagina == "catalogo.aspx" ||
                 pagina == "detalle.aspx" ||
-                pagina == "login.aspx";
+                pagina == "login.aspx" || 
+                pagina == "registro.aspx";
 
             // Mostrar / ocultar elementos del navbar
             if (Session["Usuario"] == null)

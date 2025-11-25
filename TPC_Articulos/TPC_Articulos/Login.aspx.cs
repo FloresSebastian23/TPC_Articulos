@@ -67,5 +67,10 @@ namespace TPC_Articulos
 				throw ex;
 			}
         }
+
+        protected void lnkRegistro_Click(object sender, EventArgs e)
+        {
+			Response.Redirect("Registro.aspx", false);
+        }
     }
 }

@@ -24,7 +24,7 @@
                         <asp:Label ID="lblError" runat="server" foreColor="Red" CssClass="mt-2 d-block" />
 
                         <div class="mt-3 text-center">
-                            <a href="RegistroUsuario.aspx">¿No tenés cuenta? Registrate</a>
+                           <asp:LinkButton ID="lnkRegistro" runat="server" Text="¿No tenés cuenta? Registrate" OnClick="lnkRegistro_Click" />
                         </div>
 
                     </div>
