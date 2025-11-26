@@ -12,5 +12,11 @@ namespace TPC_Articulos.Dominio
         public string Apellido { get; set; }
         public string Telefono { get; set; }
         public string Email { get; set; }
+
+        public string NombreCompleto
+        {
+            get { return Nombre + " " + Apellido; }
+        }
     }
+     
 }

@@ -92,6 +92,7 @@
     <Content Include="Global.asax" />
     <Content Include="Login.aspx" />
     <Content Include="Logout.aspx" />
+    <Content Include="NuevaVenta.aspx" />
     <Content Include="Perfil.aspx" />
     <Content Include="Proveedores.aspx" />
     <Content Include="ProveedorFormulario.aspx" />
@@ -199,6 +200,13 @@
     </Compile>
     <Compile Include="Logout.aspx.designer.cs">
       <DependentUpon>Logout.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="NuevaVenta.aspx.cs">
+      <DependentUpon>NuevaVenta.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="NuevaVenta.aspx.designer.cs">
+      <DependentUpon>NuevaVenta.aspx</DependentUpon>
     </Compile>
     <Compile Include="Perfil.aspx.cs">
       <DependentUpon>Perfil.aspx</DependentUpon>
