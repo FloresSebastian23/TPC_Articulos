@@ -64,5 +64,11 @@ namespace TPC_Articulos
                 }
             }
         }
+
+        protected void btnComprar_Click(object sender, EventArgs e)
+        {
+            int IdArticulo = int.Parse(Request.QueryString["id"]);
+            Response.Redirect("NuevaVenta.aspx?articuloId=" + IdArticulo);
+        }
     }
 }

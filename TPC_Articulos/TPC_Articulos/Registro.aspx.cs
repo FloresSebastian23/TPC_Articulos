@@ -34,14 +34,14 @@ namespace TPC_Articulos
             {
                 // 🔍 1) Verificar si existe usuario
                 datos.SetearSP("sp_ExisteUsuario");
-                datos.AgregarParametro("@UsNombree", usuario);
+                datos.AgregarParametro("@UsNombre", usuario);
                 datos.EjecutarLectura();
 
                 int existe = 0;
 
                 if (datos.Lector.Read())
                 {
-                    // ⚠ Acá va tu estilo de casteo
+                    
                     existe = (int)datos.Lector[0];
                 }
 

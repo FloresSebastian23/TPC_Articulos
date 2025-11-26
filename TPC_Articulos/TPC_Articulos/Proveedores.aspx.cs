@@ -13,8 +13,10 @@ namespace TPC_Articulos
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!IsPostBack)
+            if (Session["isAdmin"] == null || !(bool)Session["isAdmin"])
             {
+                dgvProveedores.Columns[2].Visible = false;
+               dgvProveedores.Columns[3].Visible = false;
                 cargarGrilla();
             }
         }

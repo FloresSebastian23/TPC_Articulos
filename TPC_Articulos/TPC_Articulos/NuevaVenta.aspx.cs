@@ -26,6 +26,18 @@ namespace TPC_Articulos
                 listaDetalle = new List<VentaDetalle>();
                 lblTotal.Text = "0";
             }
+            if (!IsPostBack)
+            {
+                gvDetalle.DataSource = listaDetalle;
+                gvDetalle.DataBind();
+            }
+            // si vino desde DetalleArticulo.aspx
+            if (Request.QueryString["Id"] != null && !IsPostBack)
+            {
+                int id = int.Parse(Request.QueryString["Id"]);
+                ddlArticulos.SelectedValue = id.ToString();
+                ddlArticulos_SelectedIndexChanged(null, null);
+            }
         }
 
         private void CargarClientes()
@@ -65,6 +77,15 @@ namespace TPC_Articulos
             ArticuloNegocio negocio = new ArticuloNegocio();
             Articulo art = negocio.ObtenerPorId(idArticulo);
 
+            if (cantidad > art.StockActual)
+            {
+                ScriptManager.RegisterStartupScript(this, this.GetType(),
+                    "stockError",
+                    "Swal.fire('Error','La cantidad supera el stock disponible','error');",
+                    true);
+                return;
+            }
+
             VentaDetalle detalle = new VentaDetalle();
             detalle.IdArticulo = art.ID;
             detalle.Articulo = art;
@@ -97,7 +118,8 @@ namespace TPC_Articulos
             VentaNegocio negocio = new VentaNegocio();
 
             Venta venta = new Venta();
-            venta.IdUsuario = int.Parse(ddlClientes.SelectedValue);
+            venta.Usuario = (Usuario)Session["Usuario"];
+            venta.IdUsuario = venta.Usuario.Id;
             venta.Total = decimal.Parse(lblTotal.Text);
             venta.Detalles = listaDetalle;
 
@@ -110,7 +132,28 @@ namespace TPC_Articulos
 
             lblTotal.Text = "0";
 
-            Response.Write("<script>alert('Venta registrada correctamente');</script>");
+            ScriptManager.RegisterStartupScript(this, this.GetType(),"alert", "Swal.fire('Éxito','Venta registrada correctamente','success');",true);
+
+            
+        }
+
+        protected void gvDetalle_RowCommand(object sender, GridViewCommandEventArgs e)
+        {
+            if (e.CommandName == "Quitar")
+            {
+                // El índice de la fila viene en CommandArgument
+                int index = Convert.ToInt32(e.CommandArgument);
+
+                // Quitar el ítem de la lista
+                listaDetalle.RemoveAt(index);
+
+                // Rebind
+                gvDetalle.DataSource = listaDetalle;
+                gvDetalle.DataBind();
+
+                // Actualizar total
+                ActualizarTotal();
+            }
         }
     }
 }

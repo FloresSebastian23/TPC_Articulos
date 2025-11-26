@@ -28,8 +28,13 @@ namespace TPC_Articulos.Negocio
                 datos.AgregarParametro("@NumeroFactura", venta.NumeroFactura);
                 datos.AgregarParametro("@IdUsuario", venta.Usuario.Id);
                 datos.AgregarParametro("@Total", venta.Total);
+                datos.EjecutarLectura();
 
-                int idVenta = (int)datos.Lector["IdVenta"];
+                int idVenta = 0;
+                if (datos.Lector.Read())
+                {
+                    idVenta = (int)datos.Lector["IdVenta"]; 
+                }
                 datos.CerrarConexion();
 
                 // Insertar detalles

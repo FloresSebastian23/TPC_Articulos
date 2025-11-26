@@ -3,7 +3,7 @@
 
     <div class="container mt-4">
 
-        <h3>Nueva Venta</h3>
+        <h3>Nueva Venta </h3>
         <hr />
 
         <!-- CLIENTE -->

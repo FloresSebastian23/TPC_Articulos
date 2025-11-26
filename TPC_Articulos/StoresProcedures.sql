@@ -42,6 +42,18 @@ BEGIN
     SELECT SCOPE_IDENTITY();
 END
 
+ALTER PROCEDURE SP_Ventas_Agregar
+    @NumeroFactura VARCHAR(20),
+    @IdUsuario INT,
+    @Total DECIMAL(18,2)
+AS
+BEGIN
+    INSERT INTO Ventas (NumeroFactura, IdUsuario, Total)
+    VALUES (@NumeroFactura, @IdUsuario, @Total);
+
+    SELECT CAST(SCOPE_IDENTITY() AS INT) AS IdVenta;
+END
+
 
 CREATE PROCEDURE SP_VentaDetalle_Agregar
     @IdVenta INT,

@@ -40,7 +40,7 @@ namespace TPC_Articulos.Negocio
                 datos.AgregarParametro("@Clave", nuevo.Pass);
                 datos.AgregarParametro("@EsAdmin", nuevo.EsAdmin);
 
-                datos.EjecutarLectura();
+                datos.EjecutarAccion();
             }
             finally
             {
@@ -53,7 +53,7 @@ namespace TPC_Articulos.Negocio
             AccesoDatos datos = new AccesoDatos();
             try
             {
-                datos.SetearSP("sp_Login");
+                datos.SetearSP("sp_login");
                 datos.AgregarParametro("@UsNombre", user);
                 datos.AgregarParametro("@Pass", pass);
 

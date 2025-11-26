@@ -18,8 +18,12 @@ namespace TPC_Articulos.Dominio
         {
             get { return Cantidad * PrecioUnitario;}
         } 
-         
-        
+        public string NombreArticulo
+        {
+            get { return Articulo != null ? Articulo.Nombre : ""; }
+        }
+
+
 
     }
 }

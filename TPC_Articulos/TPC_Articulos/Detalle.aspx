@@ -28,10 +28,11 @@
                 </li>
                 <li class="list-group-item">
                     <b>Stock mínimo:</b> <asp:Label ID="lblStockMinimo" runat="server" />
-                </li>
-            </ul>
-
+                </li>               
+            </ul>             
             <a runat="server" id="btnVolver" class="btn btn-secondary mt-3" href="Catalogo.aspx">Volver al Catálogo</a>
+            <asp:Button ID="btnComprar" runat="server" Text="Comprar" CssClass="btn btn-primary" OnClick="btnComprar_Click" />
         </div>
+        
     </div>
 </asp:Content>
