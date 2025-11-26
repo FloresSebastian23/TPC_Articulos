@@ -70,6 +70,35 @@ BEGIN
     WHERE Id = @IdArticulo;
 END
 
+ALTER PROCEDURE SP_VentaDetalle_Agregar
+    @IdVenta INT,
+    @IdArticulo INT,
+    @Cantidad INT,
+    @PrecioUnitario DECIMAL(18,2),
+    @Subtotal DECIMAL(18,2)
+AS
+BEGIN
+    DECLARE @StockActual INT;
+
+    SELECT @StockActual = StockActual 
+    FROM Articulos 
+    WHERE Id = @IdArticulo;
+
+    IF (@StockActual < @Cantidad)
+    BEGIN
+        RAISERROR ('Stock insuficiente para este artículo.', 16, 1);
+        RETURN;
+    END;
+
+    INSERT INTO VentaDetalle (IdVenta, IdArticulo, Cantidad, PrecioUnitario, Subtotal)
+    VALUES (@IdVenta, @IdArticulo, @Cantidad, @PrecioUnitario, @Subtotal);
+
+    UPDATE Articulos 
+    SET StockActual = StockActual - @Cantidad
+    WHERE Id = @IdArticulo;
+END;
+
+
 ------------------------------------------------------
 
 CREATE PROCEDURE SP_ListarClientes

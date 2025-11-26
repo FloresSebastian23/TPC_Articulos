@@ -65,9 +65,10 @@ namespace TPC_Articulos.Negocio
             AccesoDatos datos = new AccesoDatos();
             try
             {
-                datos.SetearSP("sp_AgregarArticulo)");
+                datos.SetearSP("sp_AgregarArticulo");
                 datos.AgregarParametro("@Nombre", nuevo.Nombre);
-                datos.AgregarParametro("@Descripcion", nuevo.Marca.Descripcion);
+                datos.AgregarParametro("@Codigo", nuevo.Codigo);
+                datos.AgregarParametro("@Descripcion", nuevo.Descripcion);
                 datos.AgregarParametro("@IdCategoria", nuevo.Categoria.Id);
                 datos.AgregarParametro("@PrecioCompra", nuevo.PrecioCompra);
                 datos.AgregarParametro("@PorcentajeGanancia", nuevo.PorcentajeGanancia);
@@ -95,14 +96,15 @@ namespace TPC_Articulos.Negocio
                 datos.SetearSP("sp_ModificarArticulo");
                 datos.AgregarParametro("@Id", articulo.ID);
                 datos.AgregarParametro("@Nombre", articulo.Nombre);
-                datos.AgregarParametro("@Descripcion", articulo.Marca.Descripcion);
+                datos.AgregarParametro("@Descripcion", articulo.Descripcion);
                 datos.AgregarParametro("@IdMarca", articulo.Marca.Id);
                 datos.AgregarParametro("@IdCategoria", articulo.Categoria.Id);
                 datos.AgregarParametro("@PrecioCompra", articulo.PrecioCompra);
                 datos.AgregarParametro("@PorcentajeGanancia", articulo.PorcentajeGanancia);
                 datos.AgregarParametro("@StockActual", articulo.StockActual);
                 datos.AgregarParametro("@StockMinimo", articulo.StockMinimo);
-                datos.AgregarParametro("@ImagenUrl", articulo.ImagenUrl);
+                datos.AgregarParametro("@ImagenUrl", articulo.ImagenUrl ?? (object)DBNull.Value);
+
                 datos.EjecutarAccion();
             }
             catch (Exception ex)
@@ -113,9 +115,8 @@ namespace TPC_Articulos.Negocio
             {
                 datos.CerrarConexion();
             }
-
-
         }
+
         public void Eliminar(int id)
         {
             AccesoDatos datos = new AccesoDatos();

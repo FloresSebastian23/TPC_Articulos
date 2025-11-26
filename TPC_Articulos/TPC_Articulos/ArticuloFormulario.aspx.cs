@@ -63,47 +63,53 @@ namespace TPC_Articulos
             }
 
             ArticuloNegocio articuloNegocio = new ArticuloNegocio();
-            Articulo articulo = new Articulo();  
+            Articulo articulo = new Articulo();
 
             articulo.Codigo = txtCodigo.Text;
             articulo.Nombre = txtNombre.Text;
             articulo.Descripcion = txtDescripcion.Text;
             articulo.ImagenUrl = txtImagenUrl.Text;
-            articulo.Marca = new Marca() {Id = int.Parse(ddlMarca.SelectedValue)};
-            articulo.Categoria = new Categoria() { Id = int.Parse(ddlCategoria.SelectedValue)};
+            articulo.Marca = new Marca() { Id = int.Parse(ddlMarca.SelectedValue) };
+            articulo.Categoria = new Categoria() { Id = int.Parse(ddlCategoria.SelectedValue) };
             articulo.PrecioCompra = decimal.Parse(txtPrecioCompra.Text);
             articulo.PorcentajeGanancia = decimal.Parse(txtPorcentajeGanancia.Text);
             articulo.StockActual = int.Parse(txtStockActual.Text);
             articulo.StockMinimo = int.Parse(txtStockMinimo.Text);
 
-            if (Request.QueryString["id"] != null)
+            try
             {
-                articulo.ID = int.Parse(Request.QueryString["id"]);
-                try
+                if (Request.QueryString["id"] != null) // ✅ EDITAR
                 {
+                    articulo.ID = int.Parse(Request.QueryString["id"]);
                     articuloNegocio.Modificar(articulo);
-                    Response.Redirect("Articulos.aspx");
+
+                    
+                    ScriptManager.RegisterStartupScript(this, this.GetType(),
+                        "okEditar",
+                        "Swal.fire({title:'Éxito',text:'Artículo modificado correctamente',icon:'success'})" +
+                        ".then(() => { window.location.href = 'Articulos.aspx'; });",
+                        true);
                 }
-                catch (Exception ex)
-                {
-                    Session.Add("Error", ex);
-                    Response.Redirect("Error.aspx");
-                }
-            }
-            else
-            {
-                try
+                else // ✅ AGREGAR
                 {
                     articuloNegocio.Agregar(articulo);
-                    Response.Redirect("Articulos.aspx");
-                }
-                catch (Exception ex)
-                {
-                    Session.Add("Error", ex);
-                    Response.Redirect("Error.aspx");
+
+                    
+                    ScriptManager.RegisterStartupScript(this, this.GetType(),
+                        "okAgregar",
+                        "Swal.fire({title:'Éxito',text:'Artículo agregado correctamente',icon:'success'})" +
+                        ".then(() => { window.location.href = 'Articulos.aspx'; });",
+                        true);
                 }
             }
+            catch (Exception ex)
+            {
+                Session.Add("Error", ex);
+                Response.Redirect("Error.aspx", false);
+                Context.ApplicationInstance.CompleteRequest();
+            }
         }
+
         private string ValidarCampos()
         {
             // Validar texto obligatorio

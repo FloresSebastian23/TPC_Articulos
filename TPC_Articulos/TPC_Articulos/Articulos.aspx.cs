@@ -38,12 +38,15 @@ namespace TPC_Articulos
             string id = dgvArticulos.SelectedDataKey.Value.ToString();
             Response.Redirect("ArticuloFormulario.aspx?id=" + id);
         }
-        protected void btnEliminar_click(object sender, GridViewPageEventArgs e)
+        protected void btnEliminar_Click(object sender, EventArgs e)
         {
-            int id = int.Parse((sender as Button).CommandArgument);
             try
             {
+                Button btn = (Button)sender;
+                int id = int.Parse(btn.CommandArgument);
+
                 negocio.Eliminar(id);
+
                 dgvArticulos.DataSource = negocio.Listar();
                 dgvArticulos.DataBind();
             }
@@ -53,6 +56,7 @@ namespace TPC_Articulos
                 Response.Redirect("Error.aspx");
             }
         }
+
 
     }
 

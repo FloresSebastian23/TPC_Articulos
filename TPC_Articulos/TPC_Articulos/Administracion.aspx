@@ -9,32 +9,32 @@
 
         <div class="list-group mt-4">
 
-           
-            <a href="Articulos.aspx" class="list-group-item list-group-item-action">
-                📦 Gestionar Artículos
-            </a>
+    <asp:LinkButton runat="server" CssClass="list-group-item list-group-item-action"
+        PostBackUrl="~/Articulos.aspx">
+        📦 Gestionar Artículos
+    </asp:LinkButton>
 
-            
-            <a href="ArticuloFormulario.aspx" class="list-group-item list-group-item-action">
-                ➕ Agregar Nuevo Artículo
-            </a>
+    <asp:LinkButton runat="server" CssClass="list-group-item list-group-item-action"
+        PostBackUrl="~/ArticuloFormulario.aspx">
+        ➕ Agregar Nuevo Artículo
+    </asp:LinkButton>
 
-           
-            <a href="Categorias.aspx" class="list-group-item list-group-item-action">
-                🏷 Gestionar Categorías
-            </a>
+    <asp:LinkButton runat="server" CssClass="list-group-item list-group-item-action"
+        PostBackUrl="~/Categorias.aspx">
+        🏷 Gestionar Categorías
+    </asp:LinkButton>
 
-            
-            <a href="Marcas.aspx" class="list-group-item list-group-item-action">
-                🖋 Gestionar Marcas
-            </a>
+    <asp:LinkButton runat="server" CssClass="list-group-item list-group-item-action"
+        PostBackUrl="~/Marcas.aspx">
+        🖋 Gestionar Marcas
+    </asp:LinkButton>
 
-            
-            <a href="Proveedores.aspx" class="list-group-item list-group-item-action">
-                🏭 Gestionar Proveedores
-            </a>
+    <asp:LinkButton runat="server" CssClass="list-group-item list-group-item-action"
+        PostBackUrl="~/Proveedores.aspx">
+        🏭 Gestionar Proveedores
+    </asp:LinkButton>
 
-        </div>
+</div>
     </div>
 
 </asp:Content>

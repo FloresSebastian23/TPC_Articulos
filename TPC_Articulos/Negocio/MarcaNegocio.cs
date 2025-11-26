@@ -10,21 +10,24 @@ namespace TPC_Articulos.Negocio
 {
    public class MarcaNegocio
     {
-        public List<Marca> Listar()
+        public List<Categoria> Listar()
         {
-            List<Marca> lista = new List<Marca>();
+            List<Categoria> lista = new List<Categoria>();
             AccesoDatos datos = new AccesoDatos();
+
             try
             {
-                datos.SetConsulta("SELECT Id, Descripcion FROM Marcas WHERE Estado = 1;");
+                datos.SetConsulta("SELECT Id, Descripcion FROM Marcas");
                 datos.EjecutarLectura();
+
                 while (datos.Lector.Read())
                 {
-                    Marca aux = new Marca();
+                    Categoria aux = new Categoria();
                     aux.Id = (int)datos.Lector["Id"];
                     aux.Descripcion = (string)datos.Lector["Descripcion"];
                     lista.Add(aux);
                 }
+
                 return lista;
             }
             catch (Exception ex)
@@ -36,5 +39,6 @@ namespace TPC_Articulos.Negocio
                 datos.CerrarConexion();
             }
         }
+
     }
 }

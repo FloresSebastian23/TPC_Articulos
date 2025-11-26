@@ -8,16 +8,43 @@
 
     <br /><br />
 
-    <asp:GridView ID="dgvProveedores" runat="server" AutoGenerateColumns="false"
-        CssClass="table table-bordered" OnSelectedIndexChanged="dgvProveedores_SelectedIndexChanged">
+  <asp:GridView ID="dgvProveedores" runat="server" AutoGenerateColumns="false"
+      CssClass="table table-bordered"
+      DataKeyNames="Id"
+      OnRowCommand="dgvProveedores_RowCommand">
 
-        <Columns>
-            <asp:BoundField DataField="Id" HeaderText="ID" />
-            <asp:BoundField DataField="Nombre" HeaderText="Nombre" />
+    <Columns>
 
-            <asp:CommandField ShowSelectButton="true" SelectText="Editar" />
-            <asp:ButtonField Text="Eliminar" CommandName="Eliminar" />
-        </Columns>
-    </asp:GridView>
+        
+        <asp:BoundField DataField="Id" HeaderText="ID" />
+
+        
+        <asp:BoundField DataField="Nombre" HeaderText="Nombre" />
+
+        
+        <asp:TemplateField HeaderText="Editar">
+            <ItemTemplate>
+                <asp:Button ID="btnEditar" runat="server" 
+                    Text="Editar"
+                    CssClass="btn btn-primary"
+                    CommandName="Editar"
+                    CommandArgument='<%# Eval("Id") %>' />
+            </ItemTemplate>
+        </asp:TemplateField>
+
+        
+        <asp:TemplateField HeaderText="Eliminar">
+            <ItemTemplate>
+                <asp:Button ID="btnEliminar" runat="server" 
+                    Text="Eliminar"
+                    CssClass="btn btn-danger"
+                    CommandName="Eliminar"
+                    CommandArgument='<%# Eval("Id") %>' />
+            </ItemTemplate>
+        </asp:TemplateField>
+
+    </Columns>
+</asp:GridView>
+
 
 </asp:Content>

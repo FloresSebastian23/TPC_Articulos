@@ -2,35 +2,34 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <asp:GridView ID="dgvArticulos" runat="server" AutoGenerateColumns="false" CssClass="table table-striped"
+   <asp:GridView ID="dgvArticulos" runat="server"
+    AutoGenerateColumns="false"
+    CssClass="table table-bordered"
+    DataKeyNames="Id"
     OnSelectedIndexChanged="dgvArticulos_SelectedIndexChanged">
 
     <Columns>
-
         <asp:BoundField DataField="Id" HeaderText="ID" />
-
         <asp:BoundField DataField="Nombre" HeaderText="Nombre" />
-
-        <asp:BoundField DataField="Marca.Descripcion" HeaderText="Marca" />
-
-        <asp:BoundField DataField="Categoria.Descripcion" HeaderText="Categoría" />
-
-        <asp:BoundField DataField="PrecioVenta" HeaderText="Precio Venta" DataFormatString="{0:C}" />
+        <asp:BoundField DataField="Descripcion" HeaderText="Descripción" />
+        <asp:BoundField DataField="PrecioCompra" HeaderText="Precio" />
+        <asp:BoundField DataField="StockActual" HeaderText="Stock" />
 
         <asp:CommandField ShowSelectButton="true" SelectText="Editar" />
 
         <asp:TemplateField>
             <ItemTemplate>
-                <asp:Button ID="btnEliminar" runat="server" Text="Eliminar" CssClass="btn btn-danger"
+                <asp:Button ID="btnEliminar" runat="server"
+                    Text="Eliminar"
+                    CssClass="btn btn-danger"
                     CommandArgument='<%# Eval("Id") %>'
                     OnClick="btnEliminar_Click" />
-                &nbsp;
             </ItemTemplate>
         </asp:TemplateField>
 
     </Columns>
-
 </asp:GridView>
+
 
 <br />
 

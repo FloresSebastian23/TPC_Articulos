@@ -13,10 +13,8 @@ namespace TPC_Articulos
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Session["isAdmin"] == null || !(bool)Session["isAdmin"])
+            if (!IsPostBack)
             {
-                dgvProveedores.Columns[2].Visible = false;
-               dgvProveedores.Columns[3].Visible = false;
                 cargarGrilla();
             }
         }
@@ -39,12 +37,11 @@ namespace TPC_Articulos
             Response.Redirect("ProveedorFormulario.aspx?id=" + id);
         }
 
-        protected void dgvProveedores_RowCommand(object sender, System.Web.UI.WebControls.GridViewCommandEventArgs e)
+        protected void dgvProveedores_RowCommand(object sender, GridViewCommandEventArgs e)
         {
             if (e.CommandName == "Eliminar")
             {
-                int index = Convert.ToInt32(e.CommandArgument);
-                int id = Convert.ToInt32(dgvProveedores.Rows[index].Cells[0].Text);
+                int id = Convert.ToInt32(e.CommandArgument);
 
                 ProveedorNegocio negocio = new ProveedorNegocio();
                 negocio.Eliminar(id);
@@ -52,5 +49,6 @@ namespace TPC_Articulos
                 cargarGrilla();
             }
         }
+
     }
 }

@@ -77,13 +77,41 @@ namespace TPC_Articulos
             ArticuloNegocio negocio = new ArticuloNegocio();
             Articulo art = negocio.ObtenerPorId(idArticulo);
 
-            if (cantidad > art.StockActual)
+            int cantidadAcumulada = 0;
+
+            for (int i = 0; i < listaDetalle.Count; i++)
+            {
+                if (listaDetalle[i].IdArticulo == idArticulo)
+                {
+                    cantidadAcumulada += listaDetalle[i].Cantidad;
+                }
+            }
+
+            // 2️⃣ Calcular total a vender
+            int cantidadTotal = cantidadAcumulada + cantidad;
+
+            // 3️⃣ Validar stock
+            if (cantidadTotal > art.StockActual)
             {
                 ScriptManager.RegisterStartupScript(this, this.GetType(),
                     "stockError",
-                    "Swal.fire('Error','La cantidad supera el stock disponible','error');",
+                    $"Swal.fire('Error','Stock insuficiente. Disponible: {art.StockActual}','error');",
                     true);
                 return;
+            }
+
+            // 4️⃣ Si ya existe ese artículo en la lista, solo actualizar cantidad
+            for (int i = 0; i < listaDetalle.Count; i++)
+            {
+                if (listaDetalle[i].IdArticulo == idArticulo)
+                {
+                    listaDetalle[i].Cantidad += cantidad;
+
+                    gvDetalle.DataSource = listaDetalle;
+                    gvDetalle.DataBind();
+                    ActualizarTotal();
+                    return;
+                }
             }
 
             VentaDetalle detalle = new VentaDetalle();

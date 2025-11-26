@@ -16,7 +16,7 @@ namespace TPC_Articulos.Negocio
             AccesoDatos datos = new AccesoDatos();
             try
             {
-                datos.SetConsulta("SELECT Id, Descripcion FROM Categorias WHERE Estado = 1;");
+                datos.SetConsulta("SELECT Id, Descripcion FROM Categorias");
                 datos.EjecutarLectura();
                 while (datos.Lector.Read())
                 {
