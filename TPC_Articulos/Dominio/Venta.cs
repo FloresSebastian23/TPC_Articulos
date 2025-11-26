@@ -8,7 +8,7 @@ namespace TPC_Articulos.Dominio
 {
    public class Venta
     {
-        public int Id { get; set; }
+        public int IdUsuario { get; set; }
         public string NumeroFactura { get; set; }
         public Usuario Usuario { get; set; }
         public DateTime Fecha { get; set; }

@@ -13,7 +13,7 @@ namespace TPC_Articulos.Negocio
             try
             {
                 datos.SetearSP("sp_ExisteUsuario");
-                datos.AgregarParametro("@UserName", user);
+                datos.AgregarParametro("@UsNombre", user);
                 datos.EjecutarLectura();
 
                 if (datos.Lector.Read())
@@ -36,8 +36,8 @@ namespace TPC_Articulos.Negocio
             try
             {
                 datos.SetearSP("sp_AgregarUsuario");
-                datos.AgregarParametro("@UserName", nuevo.User);
-                datos.AgregarParametro("@Pass", nuevo.Pass);
+                datos.AgregarParametro("@UsNombre", nuevo.User);
+                datos.AgregarParametro("@Clave", nuevo.Pass);
                 datos.AgregarParametro("@EsAdmin", nuevo.EsAdmin);
 
                 datos.EjecutarLectura();

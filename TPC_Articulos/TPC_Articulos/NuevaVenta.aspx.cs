@@ -67,10 +67,9 @@ namespace TPC_Articulos
 
             VentaDetalle detalle = new VentaDetalle();
             detalle.IdArticulo = art.ID;
-            detalle.Articulo = art.Categoria;
+            detalle.Articulo = art;
             detalle.Cantidad = cantidad;
             detalle.PrecioUnitario = art.PrecioCompra;
-            detalle.SubTotal = art.PrecioCompra * cantidad;
 
             listaDetalle.Add(detalle);
 
@@ -84,10 +83,10 @@ namespace TPC_Articulos
         {
             decimal total = 0;
 
-            // SIN foreach
+            
             for (int i = 0; i < listaDetalle.Count; i++)
             {
-                total += listaDetalle[i].Subtotal;
+                total += listaDetalle[i].SubTotal;
             }
 
             lblTotal.Text = total.ToString("0.00");
@@ -98,13 +97,13 @@ namespace TPC_Articulos
             VentaNegocio negocio = new VentaNegocio();
 
             Venta venta = new Venta();
-            venta.Usuario = int.Parse(ddlClientes.SelectedValue);
+            venta.IdUsuario = int.Parse(ddlClientes.SelectedValue);
             venta.Total = decimal.Parse(lblTotal.Text);
             venta.Detalles = listaDetalle;
 
             negocio.RegistrarVenta(venta);
 
-            // Limpieza
+            
             listaDetalle = new List<VentaDetalle>();
             gvDetalle.DataSource = listaDetalle;
             gvDetalle.DataBind();
