@@ -34,6 +34,12 @@
         🏭 Gestionar Proveedores
     </asp:LinkButton>
 
+     <asp:LinkButton runat="server" CssClass="list-group-item list-group-item-action"
+        PostBackUrl="~/Cliente.aspx">
+        👤 Gestionar Clientes
+    </asp:LinkButton>
+
+
 </div>
     </div>
 
