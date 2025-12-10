@@ -96,6 +96,7 @@ namespace TPC_Articulos.Negocio
                 datos.SetearSP("sp_ModificarArticulo");
                 datos.AgregarParametro("@Id", articulo.ID);
                 datos.AgregarParametro("@Nombre", articulo.Nombre);
+                datos.AgregarParametro("@Codigo", articulo.Codigo);
                 datos.AgregarParametro("@Descripcion", articulo.Descripcion);
                 datos.AgregarParametro("@IdMarca", articulo.Marca.Id);
                 datos.AgregarParametro("@IdCategoria", articulo.Categoria.Id);

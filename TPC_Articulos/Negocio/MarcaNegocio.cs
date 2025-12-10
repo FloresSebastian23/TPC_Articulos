@@ -10,9 +10,9 @@ namespace TPC_Articulos.Negocio
 {
    public class MarcaNegocio
     {
-        public List<Categoria> Listar()
+        public List<Marca> Listar()
         {
-            List<Categoria> lista = new List<Categoria>();
+            List<Marca> lista = new List<Marca>();
             AccesoDatos datos = new AccesoDatos();
 
             try
@@ -22,7 +22,7 @@ namespace TPC_Articulos.Negocio
 
                 while (datos.Lector.Read())
                 {
-                    Categoria aux = new Categoria();
+                    Marca aux = new Marca();
                     aux.Id = (int)datos.Lector["Id"];
                     aux.Descripcion = (string)datos.Lector["Descripcion"];
                     lista.Add(aux);
@@ -30,15 +30,10 @@ namespace TPC_Articulos.Negocio
 
                 return lista;
             }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
             finally
             {
                 datos.CerrarConexion();
             }
         }
-
     }
 }
